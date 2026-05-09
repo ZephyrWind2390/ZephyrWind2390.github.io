@@ -25,7 +25,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Zephyr风白"
-  pronouns         : "he"
+  pronouns         : #"he"
   bio              : "一个神秘的音游人：）"
   location         : "China,Luoyang"
   employer         : "Tsinghua University"
