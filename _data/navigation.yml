@@ -10,10 +10,10 @@
 main:
 
   - title: "下载"
-    url: /download/    
+    url: /talk/    
 
   - title: "关于"
-    url: /relation/    
+    url: /teaching/    
     
   # - title: "CV"
   #   url: /cv-json/
