@@ -7,6 +7,7 @@ redirect_from:
   - /about.html
 ---
 
+---
 
 ○ 本站开放的目的是想让玩家能够便捷的预览并下载我改的皮肤
 
@@ -14,7 +15,7 @@ redirect_from:
 
 ---
 
-# 「皮肤发布相关介绍」
+## 「皮肤发布相关介绍」
 
 ○ 本人主要擅长改**Malody4.3.7定轨皮肤**和**MalodyV折线皮肤**，所以这两款游戏皮肤发布会较多
 
@@ -24,7 +25,7 @@ redirect_from:
 
 ---
 
-# 「Bilibili个人简介」
+## 「Bilibili个人简介」
 
 ○ 主页及其相关视频请移步至Bilibili [***@Zephyr风白***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
 
