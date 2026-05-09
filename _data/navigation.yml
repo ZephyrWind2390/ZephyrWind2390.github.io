@@ -10,7 +10,7 @@
 main:
 
   - title: "下载"
-    url: /talk/    
+    url: /talks/    
 
   - title: "关于"
     url: /teaching/    
