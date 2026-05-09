@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "个人主页"
 title_separator          : "-"
 name                     : &name "Zephyr风白"
-description              : &description "神秘的音游人：）"   # Update this with a general description of your site, this is the default if not overridden by a page
+description              : &description "一个神秘的音游人 : )"   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://zephyrwind2390.github.io/ # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,7 +26,7 @@ author:
   avatar           : "https://pic1.imgdb.cn/item/69fec9908a9a8c274c5b7174.png"
   name             : "Zephyr风白"
   pronouns         : #"he"
-  bio              : "神秘的音游人：）"
+  bio              : "一个神秘的音游人 : )"
   location         : "Henan Province,China"
   employer         : "Tsinghua University"
   uri              : # URL
