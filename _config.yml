@@ -23,7 +23,7 @@ repository               : "ZephyrWind2390/ZephyrWind2390.github.io/"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "https://pic1.imgdb.cn/item/69fec9908a9a8c274c5b7174.png"
   name             : "Zephyr风白"
   pronouns         : #"he"
   bio              : "一个神秘的音游人：）"
