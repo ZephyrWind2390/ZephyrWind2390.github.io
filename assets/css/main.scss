@@ -43,706 +43,229 @@
 ;
 
 /* ================================================
-   毛玻璃效果完整整合版
-   包含了2-6的所有功能
+   综合修复：导航栏错位、背景不显示、底部问题
 ================================================ */
 
-/* 1. 基础CSS变量定义 */
-:root {
-  /* 毛玻璃效果变量 */
-  --glass-blur: 20px;
-  --glass-blur-mobile: 10px;
-  --glass-opacity: 0.2;
-  --glass-opacity-hover: 0.25;
-  --glass-border-radius: 20px;
-  --glass-border-radius-mobile: 15px;
-  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
-  --glass-border-hover: 1px solid rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
-  --glass-background: rgba(255, 255, 255, var(--glass-opacity));
-  --glass-background-hover: rgba(255, 255, 255, var(--glass-opacity-hover));
-  
-  /* 过渡效果 */
-  --glass-transition: all 0.3s ease;
-  
-  /* 内容区域内边距 */
-  --glass-padding: 30px;
-  --glass-padding-mobile: 20px;
-  
-  /* 背景模糊度 */
-  --bg-blur: 15px;
-  --bg-blur-mobile: 8px;
-}
-
-/* 2. 基础模糊背景 */
-body {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
-/* 模糊背景层 */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  filter: blur(var(--bg-blur)) brightness(0.9);
-  -webkit-filter: blur(var(--bg-blur)) brightness(0.9);
-  z-index: -2;
-  transform: scale(1.05);
-  will-change: transform, filter;
-}
-
-/* 遮罩层 - 提高可读性 */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.75) 100%
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* 3. 核心毛玻璃效果 - 内容区域 */
-
-/* 主要内容区域 */
-.page__inner-wrap,
-.article,
-.post-content,
-.entry-content,
-.content,
-main > .container,
-main > .wrapper,
-.page__content,
-.page-content {
-  background: var(--glass-background);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-radius: var(--glass-border-radius);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow),
-              0 1px 0 rgba(255, 255, 255, 0.5) inset,
-              0 -1px 0 rgba(0, 0, 0, 0.1) inset;
-  padding: var(--glass-padding);
-  margin: 30px auto;
-  transition: var(--glass-transition);
-  position: relative;
-  overflow: hidden;
-  max-width: calc(100% - 40px);
-  
-  /* 内部高光效果 */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-    z-index: 0;
-    pointer-events: none;
-    border-radius: var(--glass-border-radius);
-  }
-  
-  /* 悬停效果 */
-  &:hover {
-    background: var(--glass-background-hover);
-    backdrop-filter: blur(calc(var(--glass-blur) + 5px));
-    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 5px));
-    border: var(--glass-border-hover);
-    box-shadow: var(--glass-shadow-hover),
-                0 2px 0 rgba(255, 255, 255, 0.6) inset;
-    transform: translateY(-2px);
-  }
-  
-  /* 确保内容在背景之上 */
-  & > * {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-/* 4. 导航栏毛玻璃效果 */
-.navbar,
+/* 1. 导航栏完全修复 */
+header,
 .site-header,
-.masthead,
-.header,
-.site-nav,
-.main-header {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: var(--glass-transition);
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-  
-  /* 导航链接样式 */
-  a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    
-    &:hover {
-      color: #0066cc;
-    }
-  }
+.masthead {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08) !important;
+  padding: 10px 0 !important;
+  margin: 0 !important;
+  transition: all 0.3s ease !important;
 }
 
-/* 5. 侧边栏毛玻璃效果 */
-.sidebar,
-.toc,
-.aside,
-.sidebar-sticky,
-.sidebar-nav,
-.toc__menu {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: var(--glass-border-radius);
-  border: var(--glass-border);
-  padding: 20px;
-  margin: 15px 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  transition: var(--glass-transition);
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-  }
+/* 导航菜单容器 */
+.navbar,
+.nav-wrapper,
+.nav-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
 }
 
-/* 6. 卡片毛玻璃效果 */
-.card,
-.post,
-.portfolio,
-.talk,
-.page__meta,
-.page__date,
-.archive__item,
-.grid__item,
-.list__item {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: var(--glass-border-radius);
-  border: var(--glass-border);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: var(--glass-transition);
-  position: relative;
-  overflow: hidden;
-  
-  /* 卡片内部高光 */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-    z-index: 0;
-    pointer-events: none;
-    border-radius: var(--glass-border-radius);
-  }
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    
-    &::before {
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.1) 100%
-      );
-    }
-  }
-  
-  /* 卡片内容在背景之上 */
-  & > * {
-    position: relative;
-    z-index: 1;
-  }
+/* 导航链接 */
+.nav-list,
+.nav-links,
+.navigation ul {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 5px !important;
 }
 
-/* 7. 代码块毛玻璃效果 */
-pre,
-code,
-.highlight,
-.highlighter-rouge,
-.language-plaintext,
-.language-markdown {
-  background: rgba(0, 0, 0, 0.2) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #f8f8f2;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.9em;
-  line-height: 1.4;
-  overflow-x: auto;
-  padding: 1em;
-  margin: 1.5em 0;
-  transition: var(--glass-transition);
-  
-  &:hover {
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  /* 代码高亮颜色 */
-  .c, .c1 { color: #6272a4; } /* Comment */
-  .err { color: #f8f8f2; }     /* Error */
-  .k, .kc { color: #ff79c6; }  /* Keyword */
-  .kd { color: #8be9fd; }      /* Keyword.Declaration */
-  .kn { color: #ff79c6; }      /* Keyword.Namespace */
-  .kp { color: #ff79c6; }      /* Keyword.Pseudo */
-  .kr { color: #ff79c6; }      /* Keyword.Reserved */
-  .kt { color: #8be9fd; }      /* Keyword.Type */
-  .n { color: #f8f8f2; }       /* Name */
-  .na { color: #50fa7b; }      /* Name.Attribute */
-  .nb { color: #f1fa8c; }      /* Name.Builtin */
-  .nc { color: #50fa7b; }      /* Name.Class */
-  .no { color: #f8f8f2; }      /* Name.Constant */
-  .nd { color: #bd93f9; }      /* Name.Decorator */
-  .ni { color: #f8f8f2; }      /* Name.Entity */
-  .ne { color: #f8f8f2; }      /* Name.Exception */
-  .nf { color: #50fa7b; }      /* Name.Function */
-  .nl { color: #f8f8f2; }      /* Name.Label */
-  .nn { color: #f8f8f2; }      /* Name.Namespace */
-  .nx { color: #f8f8f2; }      /* Name.Other */
-  .py { color: #f8f8f2; }      /* Name.Property */
-  .nt { color: #ff79c6; }      /* Name.Tag */
-  .nv { color: #f8f8f2; }      /* Name.Variable */
-  .o { color: #ff79c6; }       /* Operator */
-  .p { color: #f8f8f2; }       /* Punctuation */
-  .s, .s1, .s2 { color: #f1fa8c; } /* Literal.String */
-  .sr { color: #f1fa8c; }      /* Literal.String.Regex */
-  .ss { color: #f1fa8c; }      /* Literal.String.Symbol */
-  .si { color: #f1fa8c; }      /* Literal.String.Interpol */
-  .se { color: #f1fa8c; }      /* Literal.String.Escape */
-  .sh { color: #f1fa8c; }      /* Literal.String.Heredoc */
-  .bp { color: #f8f8f2; }      /* Name.Builtin.Pseudo */
-  .vc { color: #f8f8f2; }      /* Name.Variable.Class */
-  .vg { color: #f8f8f2; }      /* Name.Variable.Global */
-  .vi { color: #f8f8f2; }      /* Name.Variable.Instance */
-  .il { color: #bd93f9; }      /* Literal.Number.Integer.Long */
+.nav-list li,
+.nav-links li,
+.navigation li {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
 }
 
-/* 8. 页脚毛玻璃效果 */
-.site-footer,
-.footer,
-.page__footer,
-.footer-wrapper {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 30px 0;
-  margin-top: 40px;
-  position: relative;
-  z-index: 10;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    z-index: -1;
-    pointer-events: none;
-  }
+.nav-list a,
+.nav-links a,
+.navigation a {
+  display: block !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  color: #333 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  white-space: nowrap !important;
 }
 
-/* 9. 按钮和表单元素毛玻璃效果 */
-button,
-.btn,
-.button,
-input[type="submit"],
-input[type="button"],
-.button--primary,
-.button--success,
-.button--warning,
-.button--danger {
-  background: rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 8px;
-  color: #333;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
-    z-index: -1;
-    border-radius: 8px;
-  }
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-color: rgba(255, 255, 255, 0.4) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
+.nav-list a:hover,
+.nav-links a:hover,
+.navigation a:hover {
+  background-color: rgba(0, 102, 204, 0.05) !important;
+  color: #0066cc !important;
+  border-color: rgba(0, 102, 204, 0.2) !important;
 }
 
-/* 10. 表格毛玻璃效果 */
-table {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 8px;
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-  margin: 20px 0;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  
-  th,
-  td {
-    padding: 12px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  th {
-    background: rgba(255, 255, 255, 0.2);
-    font-weight: 600;
-    text-align: left;
-  }
-  
-  tbody tr {
-    transition: background-color 0.3s ease;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-  }
-  
-  tbody tr:last-child td {
-    border-bottom: none;
-  }
+/* 当前选中项 */
+.nav-list .active a,
+.nav-links .active a,
+.navigation .active a,
+a.active {
+  background-color: rgba(0, 102, 204, 0.1) !important;
+  color: #0066cc !important;
+  font-weight: 600 !important;
+  border-bottom: 3px solid #0066cc !important;
 }
 
-/* 11. 响应式设计 */
+/* 2. 背景图片修复 */
+html, body {
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+
+body {
+  background-color: #f8f9fa !important;
+  background-image: 
+    /* 尝试不同路径格式 */
+    url('/images/background.jpg'),
+    url('/images/background.jpg'),
+    url('/images/background.jpg'),
+    url('/images/background.jpg');
+  background-size: cover !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  min-height: 100vh !important;
+}
+
+/* 确保背景显示 */
+body::after {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* 3. 内容区域确保在背景之上 */
+main,
+.page-content,
+.main-content,
+.container,
+.wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  margin: 20px auto !important;
+  padding: 30px !important;
+  max-width: 1200px !important;
+  min-height: calc(100vh - 200px) !important;
+}
+
+/* 4. 完全移除底部问题栏目 */
+.site-footer *[class*="sitemap"],
+.site-footer *[class*="follow"],
+.site-footer *[class*="feed"],
+.site-footer .footer-widget-area,
+.site-footer .footer-widgets,
+.site-footer .footer-sections,
+.site-footer .footer-col-wrapper,
+.site-footer .footer-col,
+.site-footer .footer-col-1,
+.site-footer .footer-col-2,
+.site-footer .footer-col-3,
+.site-footer .footer-links,
+.site-footer .social-links,
+.site-footer .social-media-list {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* 5. 只保留干净的页脚 */
+.site-footer {
+  background-color: #fff !important;
+  border-top: 1px solid #eaeaea !important;
+  padding: 20px 0 !important;
+  margin-top: 40px !important;
+  text-align: center !important;
+  position: relative !important;
+  width: 100% !important;
+  z-index: 10 !important;
+  clear: both !important;
+}
+
+.site-footer .copyright,
+.site-footer p {
+  color: #666 !important;
+  font-size: 14px !important;
+  margin: 5px 0 !important;
+  line-height: 1.5 !important;
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 20px !important;
+}
+
+/* 6. 移动端适配 */
 @media (max-width: 768px) {
-  :root {
-    --glass-blur: var(--glass-blur-mobile);
-    --glass-border-radius: var(--glass-border-radius-mobile);
-    --glass-padding: var(--glass-padding-mobile);
-    --bg-blur: var(--bg-blur-mobile);
+  .nav-list,
+  .nav-links,
+  .navigation ul {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 5px !important;
   }
   
-  body::before {
-    filter: blur(var(--bg-blur)) brightness(0.95);
-    -webkit-filter: blur(var(--bg-blur)) brightness(0.95);
-    background-attachment: scroll;
+  .nav-list a,
+  .nav-links a,
+  .navigation a {
+    padding: 6px 12px !important;
+    font-size: 14px !important;
   }
   
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .entry-content,
-  .content {
-    margin: 15px auto;
-    padding: var(--glass-padding);
-  }
-  
-  .navbar,
-  .site-header,
-  .masthead {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  
-  .card,
-  .post,
-  .portfolio,
-  .talk {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  
-  /* 移动端悬停效果简化 */
-  .page__inner-wrap:hover,
-  .article:hover,
-  .post-content:hover,
-  .card:hover,
-  .post:hover {
-    transform: none;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  :root {
-    --glass-blur: 15px;
-  }
-  
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .entry-content,
-  .content {
-    max-width: calc(100% - 60px);
-  }
-}
-
-/* 12. 打印样式 */
-@media print {
-  body::before,
-  body::after {
-    display: none;
-  }
-  
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .entry-content,
-  .content,
-  .navbar,
-  .site-header,
-  .card,
-  .post {
-    background: white !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: 1px solid #ddd !important;
-  }
-}
-
-/* 13. 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --glass-background: rgba(0, 0, 0, 0.3);
-    --glass-background-hover: rgba(0, 0, 0, 0.4);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-    --glass-border-hover: 1px solid rgba(255, 255, 255, 0.2);
+  main,
+  .page-content,
+  .main-content {
+    padding: 20px 15px !important;
+    margin: 10px !important;
+    border-radius: 8px !important;
   }
   
   body {
-    color: #f0f0f0;
-  }
-  
-  body::after {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.6) 100%
-    );
-  }
-  
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .entry-content,
-  .content {
-    color: #f0f0f0;
-    
-    &::before {
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.02) 100%
-      );
-    }
-  }
-  
-  .navbar,
-  .site-header,
-  .masthead {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
-    a {
-      color: #f0f0f0;
-      
-      &:hover {
-        color: #66b3ff;
-      }
-    }
-  }
-  
-  .sidebar,
-  .toc,
-  .aside {
-    background: rgba(0, 0, 0, 0.6);
-  }
-  
-  .card,
-  .post,
-  .portfolio,
-  .talk {
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  pre,
-  code,
-  .highlight {
-    background: rgba(0, 0, 0, 0.4) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .site-footer,
-  .footer {
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  button,
-  .btn,
-  .button {
-    background: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: #f0f0f0;
-  }
-  
-  table {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    th {
-      background: rgba(0, 0, 0, 0.3);
-    }
-    
-    tbody tr:hover {
-      background: rgba(0, 0, 0, 0.25);
-    }
-  }
-}
-
-/* 14. 性能优化 */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .card,
-  .post,
-  button,
-  .btn {
-    transition: none !important;
-  }
-}
-
-/* 15. 不支持毛玻璃效果的浏览器回退 */
-@supports not (backdrop-filter: blur(10px)) {
-  .page__inner-wrap,
-  .article,
-  .post-content,
-  .entry-content,
-  .content,
-  .navbar,
-  .site-header,
-  .sidebar,
-  .toc,
-  .card,
-  .post,
-  .site-footer,
-  .footer {
-    background: rgba(255, 255, 255, 0.95) !important;
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .page__inner-wrap,
-    .article,
-    .post-content,
-    .entry-content,
-    .content,
-    .navbar,
-    .site-header,
-    .sidebar,
-    .toc,
-    .card,
-    .post,
-    .site-footer,
-    .footer {
-      background: rgba(0, 0, 0, 0.9) !important;
-    }
+    background-attachment: scroll !important;
   }
 }
