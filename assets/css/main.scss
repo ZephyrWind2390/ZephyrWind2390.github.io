@@ -64,15 +64,8 @@ body {
 
 /* 3. 左侧边栏：半透明 + 强毛玻璃 + 修复重叠/贴边 */
 .sidebar,
-.author__avatar {
-  margin-bottom: 15px !important; /* 头像与签名之间留15px空隙 */
-  margin-left: 5px !important;   /* 头像与左侧框线留5px空隙 */
-  margin-right: 5px !important;  /* 头像与右侧框线留5px空隙 */
-}
-.author__content {
-  margin-left: 5px !important;   /* 签名与左侧框线留5px空隙 */
-  margin-right: 5px !important;  /* 签名与右侧框线留5px空隙 */
-}
+.author__avatar,
+.author__content,
 .profile,
 .page__meta,
 .page__share,
