@@ -1,4 +1,3 @@
-
 ---
 permalink: /
 title: "Zephyr风白的音游皮肤下载站"
@@ -14,7 +13,7 @@ redirect_from:
 
 ---
 
-## <font color="cornflowerblue">「皮肤发布相关介绍」</font>
+## 「皮肤发布相关介绍」
 
 ○ 本人主要擅长改**Malody4.3.7定轨皮肤**和**MalodyV折线皮肤**，所以这两款游戏皮肤发布会较多
 
@@ -24,7 +23,7 @@ redirect_from:
 
 ---
 
-## <font color="cornflowerblue">「BiliBili个人简介」</font>
+## 「BiliBili个人简介」
 
 ○ 主页及其相关视频请移步至BiliBili [***@Zephyr风白***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
 
