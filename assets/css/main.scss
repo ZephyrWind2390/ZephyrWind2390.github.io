@@ -81,6 +81,24 @@ body {
   margin: 0 10px !important; /* 新增：让左侧栏整体与左右框线保持10px距离 */
 }
 
+/* 单独调整头像的外边距（避免与签名重叠） */
+.author__avatar {
+  margin-bottom: 15px !important; /* 头像与签名之间留15px空隙 */
+  margin-left: 5px !important;   /* 头像与左侧框线留5px空隙 */
+  margin-right: 5px !important;  /* 头像与右侧框线留5px空隙 */
+}
+
+/* 单独调整签名的外边距（避免贴紧左右框线） */
+.author__content {
+  margin-left: 5px !important;   /* 签名与左侧框线留5px空隙 */
+  margin-right: 5px !important;  /* 签名与右侧框线留5px空隙 */
+}
+
+.sidebar {
+  width: 260px !important; /* 固定左侧栏宽度（根据需求调整，如260px/300px） */
+  max-width: 100% !important; /* 响应式：小屏幕下自动收缩 */
+}
+
 /* 4. 右侧内容区：半透明 + 强毛玻璃（核心修复） */
 .main-content,
 .content,
