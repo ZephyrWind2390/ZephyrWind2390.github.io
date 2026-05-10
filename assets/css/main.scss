@@ -126,23 +126,14 @@ body {
   color: #333 !important;
 }
 
-
 /* 适配大多数卡片组件的类名 */
-
 .card, .card-body, .content-box {
-
 padding: 2rem !important; /* 四周留出 2rem 的空间，如果不够可以改成 3rem */
-
 box-sizing: border-box; /* 确保内边距不会撑大盒子 */
-
 }
 
 /* 如果您的网站使用了 Prism.js 等高亮插件，可能需要单独调整代码块的边距 */
-
 pre[class*="language-"] {
-
 margin: 0 !important;
-
 padding: 1.5rem !important;
-
 }
