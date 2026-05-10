@@ -62,10 +62,17 @@ body {
   background-color: #f8f8f8 !important; /* 备用色 */
 }
 
-/* 3. 左侧边栏：半透明 + 强毛玻璃 */
+/* 3. 左侧边栏：半透明 + 强毛玻璃 + 修复重叠/贴边 */
 .sidebar,
-.author__avatar,
-.author__content,
+.author__avatar {
+  margin-bottom: 15px !important; /* 头像与签名之间留15px空隙 */
+  margin-left: 5px !important;   /* 头像与左侧框线留5px空隙 */
+  margin-right: 5px !important;  /* 头像与右侧框线留5px空隙 */
+}
+.author__content {
+  margin-left: 5px !important;   /* 签名与左侧框线留5px空隙 */
+  margin-right: 5px !important;  /* 签名与右侧框线留5px空隙 */
+}
 .profile,
 .page__meta,
 .page__share,
@@ -75,7 +82,10 @@ body {
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-  border-radius: 16px !important; /* 新增：左侧边栏也圆角化（可选） */
+  border-radius: 16px !important; /* 圆角与内容区保持一致（可改20px更柔和） */
+  padding: 20px !important; /* 新增：给左侧栏内部留20px空间，避免内容贴边 */
+  box-sizing: border-box !important; /* 确保padding不撑大元素宽度 */
+  margin: 0 10px !important; /* 新增：让左侧栏整体与左右框线保持10px距离 */
 }
 
 /* 4. 右侧内容区：半透明 + 强毛玻璃（核心修复） */
