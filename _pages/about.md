@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Zephyr风白的音游皮肤下载站"
+title: "<font color="powderblue">Zephyr风白的音游皮肤下载站</font>"
 author_profile: true
 redirect_from: 
   - /about/
