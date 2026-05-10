@@ -75,6 +75,7 @@ body {
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 16px !important; /* 新增：左侧边栏也圆角化（可选） */
 }
 
 /* 4. 右侧内容区：半透明 + 强毛玻璃（核心修复） */
@@ -87,6 +88,7 @@ body {
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 16px !important; /* 新增：圆角矩形，数值可改（如12px/20px） */
 }
 
 /* 5. 底部页脚：半透明 + 毛玻璃 */
