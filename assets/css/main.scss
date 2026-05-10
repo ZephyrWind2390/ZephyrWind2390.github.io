@@ -99,6 +99,56 @@ body {
   max-width: 100% !important; /* 响应式：小屏幕下自动收缩 */
 }
 
+/* ============================================= */
+/* === 左侧栏头像与签名区域尺寸自定义控制器 === */
+/* ============================================= */
+
+:root {
+  /* 核心控制变量 - 只需修改这里的值 */
+  --left-sidebar-avatar-width: 280px;  /* 控制头像区域宽度，默认280px */
+  --left-sidebar-avatar-height: auto;  /* 控制头像区域高度，auto为自适应 */
+  --left-sidebar-signature-width: 280px; /* 控制签名区域宽度，默认280px */
+  --left-sidebar-signature-height: auto; /* 控制签名区域高度，auto为自适应 */
+  --left-sidebar-max-width: 300px;      /* 左侧栏整体最大宽度，防止过宽 */
+}
+
+/* 应用控制变量到头像圆角矩形 */
+.author__avatar {
+  width: var(--left-sidebar-avatar-width) !important;
+  height: var(--left-sidebar-avatar-height) !important;
+  max-width: var(--left-sidebar-max-width) !important; /* 确保不超过最大宽度 */
+  /* 保持现有圆角、毛玻璃等样式，以下属性已由第3部分定义，无需重复 */
+  /* background, backdrop-filter, border-radius 等 */
+  display: flex; /* 确保内部内容（如图片）在调整大小时仍能正确居中 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto !important; /* 配合下方规则实现水平居中 */
+  margin-right: auto !important;
+}
+
+/* 应用控制变量到签名圆角矩形 */
+.author__content {
+  width: var(--left-sidebar-signature-width) !important;
+  height: var(--left-sidebar-signature-height) !important;
+  max-width: var(--left-sidebar-max-width) !important;
+  /* 保持现有圆角、毛玻璃等样式 */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center; /* 确保签名文字在调整宽度后依然居中 */
+  padding: 15px 10px !important; /* 增加内边距，使文字不紧贴边缘，可视情况调整 */
+  box-sizing: border-box !important; /* 确保padding包含在width内 */
+}
+
+/* 可选：确保头像图片本身也能自适应容器大小 */
+.author__avatar img {
+  max-width: 80% !important; /* 图片占头像区域宽度的80% */
+  height: auto !important;
+  border-radius: 50% !important; /* 保持圆形 */
+  display: block;
+  margin: 0 auto 10px auto !important; /* 图片居中，并与下方文字保持间距 */
+}
+
 /* 4. 右侧内容区：半透明 + 强毛玻璃（核心修复） */
 .main-content,
 .content,
