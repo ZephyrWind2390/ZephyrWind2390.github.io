@@ -13,7 +13,7 @@ redirect_from:
 
 ---
 
-## <font color="powderblue">「皮肤发布相关介绍」</font>
+## <font color="skyblue">「皮肤发布相关介绍」</font>
 
 ○ 本人主要擅长改**Malody4.3.7定轨皮肤**和**MalodyV折线皮肤**，所以这两款游戏皮肤发布会较多
 
@@ -23,9 +23,9 @@ redirect_from:
 
 ---
 
-## <font color="powderblue">「BiliBili个人简介」</font>
+## <font color="skyblue">「BiliBili个人简介」</font>
 
-○ 主页及其相关视频请移步至BiliBili [***<font color="powderblue">@Zephyr风白</font>***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
+○ 主页及其相关视频请移步至BiliBili [***<font color="skyblue">@Zephyr风白</font>***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
 
 ○ 没有个人群，商业合作以及私下交流请看BiliBili上方简介
 
@@ -35,4 +35,4 @@ redirect_from:
 
 ---
 
-***<font color="powderblue">如果喜欢别忘了三连我的视频，谢谢关注和支持Zephyr风白喵！！！！(´・ω・)つ⑩</font>***
+***<font color="skyblue">如果喜欢别忘了三连我的视频，谢谢关注和支持Zephyr风白喵！！！！(´・ω・)つ⑩</font>***
