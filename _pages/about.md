@@ -25,7 +25,7 @@ redirect_from:
 
 ## <font color="cornflowerblue">「BiliBili个人简介」</font>
 
-○ 主页及其相关视频请移步至BiliBili [***@Zephyr风白***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
+○ 主页及其相关视频请移步至BiliBili [***<font color="cornflowerblue">@Zephyr风白</font>***](https://space.bilibili.com/604684222?spm_id_from=333.1007.0.0)
 
 ○ 没有个人群，商业合作以及私下交流请看BiliBili上方简介
 
@@ -35,4 +35,4 @@ redirect_from:
 
 ---
 
-***如果喜欢别忘了三连我的视频，谢谢关注和支持Zephyr风白喵！！！！(´・ω・)つ⑩***
+***<font color="cornflowerblue">如果喜欢别忘了三连我的视频，谢谢关注和支持Zephyr风白喵！！！！(´・ω・)つ⑩***</font>
